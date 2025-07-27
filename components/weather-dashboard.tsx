@@ -11,6 +11,8 @@ const locations = [
   { id: "newyork", name: "New York", country: "USA", timezone: "America/New_York" },
   { id: "london", name: "London", country: "UK", timezone: "Europe/London" },
   { id: "tokyo", name: "Tokyo", country: "Japan", timezone: "Asia/Tokyo" },
+  { id: "mumbai", name: "Mumbai", country: "India", timezone: "Asia/Kolkata" },
+  { id: "pune", name: "Pune", country: "India", timezone: "Asia/Kolkata" },
 ];
 
 const mockWeatherData = {
@@ -111,6 +113,72 @@ const mockWeatherData = {
     airQuality: {
       index: 35,
       status: "Good",
+    },
+  },
+  mumbai: {
+    temperature: 32,
+    condition: "Sunny",
+    icon: <Sun className="h-16 w-16 text-yellow-500" />,
+    highTemp: 35,
+    lowTemp: 28,
+    windSpeed: 10,
+    humidity: 70,
+    visibility: 10,
+    feelsLike: 34,
+    sunrise: "06:00 AM",
+    sunset: "07:30 PM",
+    windDirection: "SE",
+    uvIndex: {
+      value: 9,
+      status: "High"
+    },
+    precipitation: {
+      chance: 5,
+      amount: 0.0
+    },
+    forecast: [
+      { day: "Mon", temp: 32, icon: <Sun className="h-6 w-6" /> },
+      { day: "Tue", temp: 33, icon: <Sun className="h-6 w-6" /> },
+      { day: "Wed", temp: 34, icon: <Sun className="h-6 w-6" /> },
+      { day: "Thu", temp: 31, icon: <CloudRain className="h-6 w-6" /> },
+      { day: "Fri", temp: 33, icon: <Sun className="h-6 w-6" /> },
+    ],
+    airQuality: {
+      index: 50,
+      status: "Moderate",
+    },
+  },
+  pune: {
+    temperature: 30,
+    condition: "Partly Cloudy",
+    icon: <Cloud className="h-16 w-16 text-gray-500" />,
+    highTemp: 32,
+    lowTemp: 26,
+    windSpeed: 12,
+    humidity: 65,
+    visibility: 11,
+    feelsLike: 31,
+    sunrise: "06:10 AM",
+    sunset: "07:40 PM",
+    windDirection: "SW",
+    uvIndex: {
+      value: 7,
+      status: "Moderate"
+    },
+    precipitation: {
+      chance: 15,
+      amount: 0.1
+    },
+    forecast: [
+      { day: "Mon", temp: 30, icon: <Sun className="h-6 w-6" /> },
+      { day: "Tue", temp: 31, icon: <CloudRain className="h-6 w-6" /> },
+      { day: "Wed", temp: 29, icon: <Sun className="h-6 w-6" /> },
+      { day: "Thu", temp: 30, icon: <CloudRain className="h-6 w-6" /> },
+      { day: "Fri", temp: 32, icon: <Sun className="h-6 w-6" /> },
+    ],
+    airQuality: {
+      index: 40,
+      status: "Moderate",
     },
   },
 };
