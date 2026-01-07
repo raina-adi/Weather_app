@@ -183,17 +183,17 @@ const mockWeatherData = {
   },
 };
 
-// Enhanced Weather Icon Component with hover effect
+// Enhanced Weather Icon Component with animations
 // @ts-ignore
 export const WeatherIcon = ({ condition, size = 64, className = "" }) => {
   const iconMap = {
-    "Sunny": <Sun className={`transition-all duration-300 hover:scale-110 text-yellow-500 ${className}`} size={size} />,
-    "Partly Cloudy": <Cloud className={`transition-all duration-300 hover:scale-110 text-gray-500 ${className}`} size={size} />,
-    "Rainy": <CloudRain className={`transition-all duration-300 hover:scale-110 text-blue-500 ${className}`} size={size} />,
+    "Sunny": <motion.div animate={{ rotate: [0, 10, -10, 0] }} transition={{ duration: 2, repeat: Infinity }}><Sun className={`transition-all duration-300 hover:scale-110 text-yellow-500 ${className}`} size={size} /></motion.div>,
+    "Partly Cloudy": <motion.div animate={{ y: [0, -5, 0] }} transition={{ duration: 3, repeat: Infinity }}><Cloud className={`transition-all duration-300 hover:scale-110 text-gray-500 ${className}`} size={size} /></motion.div>,
+    "Rainy": <motion.div animate={{ y: [0, 2, 0] }} transition={{ duration: 2, repeat: Infinity }}><CloudRain className={`transition-all duration-300 hover:scale-110 text-blue-500 ${className}`} size={size} /></motion.div>,
   };
 
   // @ts-ignore
-  return iconMap[condition] || <Sun className={`transition-all duration-300 hover:scale-110 text-yellow-500 ${className}`} size={size} />;
+  return iconMap[condition] || <motion.div animate={{ rotate: [0, 10, -10, 0] }} transition={{ duration: 2, repeat: Infinity }}><Sun className={`transition-all duration-300 hover:scale-110 text-yellow-500 ${className}`} size={size} /></motion.div>;
 };
 
 // Enhanced Weather Details Card Component with hover effects
@@ -454,6 +454,7 @@ export function WeatherDashboard({ initialLocation = "newyork" }) {
   const [selectedLocation, setSelectedLocation] = useState(initialLocation);
   const [currentTime, setCurrentTime] = useState(new Date());
   const [isLocationDropdownOpen, setIsLocationDropdownOpen] = useState(false);
+  const [isClient, setIsClient] = useState(false);
 
   const locationDetails = locations.find(loc => loc.id === selectedLocation) || locations[0];
   // @ts-ignore
@@ -517,14 +518,18 @@ export function WeatherDashboard({ initialLocation = "newyork" }) {
             className="flex items-center space-x-4"
             whileHover={{ scale: 1.02 }}
           >
-            <MapPin className="h-8 w-8 text-blue-600 dark:text-blue-400" />
-            <div>
-              <h1 className="text-4xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
-                SunShine Dashboard
-              </h1>
-              <p className="text-sm text-gray-500 dark:text-gray-400">
-                {formattedTime}
-              </p>
+            <div className="flex items-center space-x-3">
+              <div className="w-12 h-12 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center shadow-lg">
+                <Sun className="h-7 w-7 text-white" />
+              </div>
+              <div>
+                <h1 className="text-4xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
+                  SunShine Dashboard
+                </h1>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  {isClient ? formattedTime : null}
+                </p>
+              </div>
             </div>
           </motion.div>
 
