@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import {
   ChevronDown, MapPin, Sun, CloudRain, Wind, Droplet, Eye,
-  Thermometer, Cloud, Sunrise, Sunset, Navigation
+  Thermometer, Cloud, Sunrise, Sunset, Navigation, CloudSnow, Snowflake
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -13,6 +13,8 @@ const locations = [
   { id: "tokyo", name: "Tokyo", country: "Japan", timezone: "Asia/Tokyo" },
   { id: "mumbai", name: "Mumbai", country: "India", timezone: "Asia/Kolkata" },
   { id: "pune", name: "Pune", country: "India", timezone: "Asia/Kolkata" },
+  { id: "jammu", name: "Jammu", country: "India", timezone: "Asia/Kolkata" },
+  { id: "kashmir", name: "Kashmir", country: "India", timezone: "Asia/Kolkata" },
 ];
 
 const mockWeatherData = {
@@ -181,6 +183,72 @@ const mockWeatherData = {
       status: "Moderate",
     },
   },
+  jammu: {
+    temperature: 6,
+    condition: "Cold",
+    icon: <Wind className="h-16 w-16 text-blue-400" />,
+    highTemp: 8,
+    lowTemp: 4,
+    windSpeed: 8,
+    humidity: 70,
+    visibility: 9,
+    feelsLike: 4,
+    sunrise: "07:00 AM",
+    sunset: "06:00 PM",
+    windDirection: "NW",
+    uvIndex: {
+      value: 4,
+      status: "Low"
+    },
+    precipitation: {
+      chance: 20,
+      amount: 0.1
+    },
+    forecast: [
+      { day: "Mon", temp: 6, icon: <Cloud className="h-6 w-6" /> },
+      { day: "Tue", temp: 7, icon: <CloudRain className="h-6 w-6" /> },
+      { day: "Wed", temp: 5, icon: <Cloud className="h-6 w-6" /> },
+      { day: "Thu", temp: 6, icon: <CloudRain className="h-6 w-6" /> },
+      { day: "Fri", temp: 8, icon: <Cloud className="h-6 w-6" /> },
+    ],
+    airQuality: {
+      index: 35,
+      status: "Good",
+    },
+  },
+  kashmir: {
+    temperature: -4,
+    condition: "Snowy",
+    icon: <CloudSnow className="h-16 w-16 text-blue-300" />,
+    highTemp: -2,
+    lowTemp: -6,
+    windSpeed: 5,
+    humidity: 75,
+    visibility: 7,
+    feelsLike: -8,
+    sunrise: "07:30 AM",
+    sunset: "05:30 PM",
+    windDirection: "N",
+    uvIndex: {
+      value: 2,
+      status: "Low"
+    },
+    precipitation: {
+      chance: 25,
+      amount: 0.2
+    },
+    forecast: [
+      { day: "Mon", temp: -4, icon: <Cloud className="h-6 w-6" /> },
+      { day: "Tue", temp: -3, icon: <CloudRain className="h-6 w-6" /> },
+      { day: "Wed", temp: -5, icon: <Cloud className="h-6 w-6" /> },
+      { day: "Thu", temp: -4, icon: <CloudRain className="h-6 w-6" /> },
+      { day: "Fri", temp: -2, icon: <Cloud className="h-6 w-6" /> },
+    ],
+    airQuality: {
+      index: 30,
+      status: "Good",
+    },
+  },
 };
 
 // Enhanced Weather Icon Component with animations
@@ -190,6 +258,8 @@ export const WeatherIcon = ({ condition, size = 64, className = "" }) => {
     "Sunny": <motion.div animate={{ rotate: [0, 10, -10, 0] }} transition={{ duration: 2, repeat: Infinity }}><Sun className={`transition-all duration-300 hover:scale-110 text-yellow-500 ${className}`} size={size} /></motion.div>,
     "Partly Cloudy": <motion.div animate={{ y: [0, -5, 0] }} transition={{ duration: 3, repeat: Infinity }}><Cloud className={`transition-all duration-300 hover:scale-110 text-gray-500 ${className}`} size={size} /></motion.div>,
     "Rainy": <motion.div animate={{ y: [0, 2, 0] }} transition={{ duration: 2, repeat: Infinity }}><CloudRain className={`transition-all duration-300 hover:scale-110 text-blue-500 ${className}`} size={size} /></motion.div>,
+    "Cold": <motion.div animate={{ y: [0, 2, 0] }} transition={{ duration: 2, repeat: Infinity }}><Wind className={`transition-all duration-300 hover:scale-110 text-blue-400 ${className}`} size={size} /></motion.div>,
+    "Snowy": <motion.div animate={{ y: [0, 2, 0] }} transition={{ duration: 2, repeat: Infinity }}><CloudSnow className={`transition-all duration-300 hover:scale-110 text-white ${className}`} size={size} /></motion.div>,
   };
 
   // @ts-ignore
@@ -361,6 +431,22 @@ const getWeatherBackground = (condition: string) => {
     "Cloudy": {
       from: "from-gray-100",
       via: "via-gray-200",
+      to: "to-white",
+      darkFrom: "dark:from-gray-900",
+      darkVia: "dark:via-gray-800",
+      darkTo: "dark:to-gray-700"
+    },
+    "Cold": {
+      from: "from-blue-100",
+      via: "via-blue-200",
+      to: "to-blue-300",
+      darkFrom: "dark:from-blue-900",
+      darkVia: "dark:via-blue-800",
+      darkTo: "dark:to-blue-700"
+    },
+    "Snowy": {
+      from: "from-white",
+      via: "via-gray-100",
       to: "to-white",
       darkFrom: "dark:from-gray-900",
       darkVia: "dark:via-gray-800",
