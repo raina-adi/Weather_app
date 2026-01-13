@@ -1,8 +1,8 @@
 # Weather Dashboard
 
-A modern, responsive weather dashboard built with Next.js, React, and TypeScript, featuring real-time weather data visualization, interactive forecasts, and air quality metrics for multiple global locations.
+A modern, responsive weather dashboard built with Next.js, React, and TypeScript/JavaScript, featuring interactive weather data visualization, animated forecasts, and air quality metrics for multiple global locations.
 
-Utilizes Tailwind CSS and Framer Motion for sleek animations and a polished UI, with components like UV index, precipitation tracking, and location-based time zones.
+Utilizes Tailwind CSS and Framer Motion for sleek animations and a polished UI, with components like UV index, precipitation tracking, sunrise/sunset times, and location-based time zones.
 
 Perfect for users seeking an intuitive and visually appealing way to stay informed about weather conditions, powered by mock data for demonstration purposes.
 
@@ -24,12 +24,11 @@ Perfect for users seeking an intuitive and visually appealing way to stay inform
 
 - Next.js 13
 - React 18
-- TypeScript
+- TypeScript/JavaScript
 - Tailwind CSS
 - Framer Motion
 - Radix UI components
 - Lucide React icons
-- Recharts
 
 ## Installation
 
